@@ -15,6 +15,18 @@
 // Usa el retorno implícito (una sola línea).
 
 // --- TU CÓDIGO AQUÍ ---
+console.log("> EJERCICIO 1: El Saludo Personalizado");
+console.log("> Instrucciones: Crea una función flecha");
+console.log("> llamada 'crearSaludo' que reciba un nombre");
+console.log("> y devuelva: 'Hola, [nombre], ¿listo para programar?'.");
+console.log("> Usa el retorno implícito (una sola línea).");
+
+const crearSaludo = (nombre) =>
+  console.log(`Hola, ${nombre}, ¿listo para programar?'.`);
+
+crearSaludo();
+
+console.log("************************************************");
 
 // --- SOLUCIÓN EXPLICADA ---
 /*
@@ -25,10 +37,17 @@ const crearSaludo = nombre => `Hola, ${nombre}, ¿listo para programar?`;
 // EJERCICIO 2: Filtro de Números Pares (Callback)
 // Instrucciones: JavaScript tiene un método llamado .filter().
 // Pásale una función flecha anónima a .filter() para obtener solo los pares.
+console.log("> EJERCICIO 2: Filtro de Números Pares (Callback)");
+console.log("> Instrucciones: JavaScript tiene un método llamado .filter().");
+console.log("> Pásale una función flecha anónima a .filter()");
+console.log("> para obtener solo los pares.");
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-// const pares = numeros.filter( /* Tu función flecha aquí */ );
+const pares = numeros.filter((numero) => numero % 2 === 0);
+console.log(pares);
+
+console.log("************************************************");
 
 // --- SOLUCIÓN EXPLICADA ---
 /*
@@ -42,6 +61,16 @@ const pares = numeros.filter(n => n % 2 === 0);
 // Pista: César, recuerda los paréntesis para devolver objetos implícitamente.
 
 // --- TU CÓDIGO AQUÍ ---
+console.log("> EJERCICIO 3: El Generador de Objetos");
+console.log("> Instrucciones: Crea una función flecha");
+console.log("> llamada 'formatearProducto' que reciba");
+console.log("> 'id' y 'precio'. Debe devolver un objeto con esas propiedades.");
+console.log("> Pista: César, recuerda los paréntesis para");
+console.log("> devolver objetos implícitamente.");
+
+const formatearProducto = (id, precio) => ({ id, precio });
+
+console.log("************************************************");
 
 // --- SOLUCIÓN EXPLICADA ---
 /*
@@ -61,6 +90,7 @@ function obtenerPinaColada() {
 }
 
 // --- CONVIERTE A FLECHA AQUÍ ---
+const obtenerPinaColadaA = () => "🍹";
 
 // SOLUCIÓN: const obtenerPinaColada = () => "🍹";
 
@@ -71,6 +101,7 @@ function multiplicar(a, b) {
 }
 
 // --- CONVIERTE A FLECHA AQUÍ ---
+const multiplicarA = (a, b) => a * b;
 
 // SOLUCIÓN: const multiplicar = (a, b) => a * b;
 
@@ -85,6 +116,11 @@ function clasificarEdad(edad) {
 }
 
 // --- CONVIERTE A FLECHA AQUÍ ---
+const clasificarEdadA = (edad) => {
+  if (edad >= 18) return "Adulto";
+
+  return "Menor";
+};
 
 // SOLUCIÓN:
 /*
@@ -101,6 +137,7 @@ setTimeout(function () {
 }, 1000);
 
 // --- CONVIERTE A FLECHA AQUÍ ---
+setTimeout(() => console.log("Tiempo cumplido"), 1000);
 
 // SOLUCIÓN: setTimeout(() => console.log("Tiempo cumplido"), 1000);
 
@@ -111,6 +148,8 @@ const dobles = [1, 2, 3].map(function (num) {
 });
 
 // --- CONVIERTE A FLECHA AQUÍ ---
+dobles.forEach((num) => num * 2);
+dobles.forEach((num) => console.log(num * 2));
 
 // SOLUCIÓN: const dobles = [1, 2, 3].map(num => num * 2);
 

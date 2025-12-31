@@ -13,6 +13,20 @@
 // (Celsius * 9/5) + 32.
 
 // --- TU CÓDIGO AQUÍ ---
+console.log("> EJERCICIO 1: El Conversor de Temperatura");
+console.log("> Instrucciones: Crea una función tradicional llamada ");
+console.log("'convertirCelsiusAFahrenheit'.");
+console.log("> Debe recibir un parámetro (grados Celsius)");
+console.log("y devolver el resultado de la fórmula:");
+console.log("> (Celsius * 9/5) + 32.");
+
+function convertirCelsiusAFahrenheit(Celsius) {
+  return (Celsius * 9) / 5 + 32;
+}
+
+console.log(convertirCelsiusAFahrenheit(9));
+
+console.log("********************************************");
 
 // --- SOLUCIÓN EXPLICADA (Mírala después de intentar) ---
 /*
@@ -33,6 +47,20 @@ function convertirCelsiusAFahrenheit(celsius) {
 // productos se pasaron como argumentos.
 
 // --- TU CÓDIGO AQUÍ ---
+console.log("> EJERCICIO 2: El Contador de Argumentos");
+console.log("> Instrucciones: Crea una función tradicional llamada ");
+console.log("> 'verificarInventario' Esta función no debe");
+console.log("> tener parámetros definidos en su declaración.");
+console.log("> Debe usar el objeto 'arguments' para imprimir");
+console.log("> en consola cuántos productos se pasaron como argumentos.");
+
+function verificarInventario() {
+  console.log(arguments.length);
+}
+
+verificarInventario("refresco", "agua", "cigarros", "atún");
+
+console.log("********************************************");
 
 // --- SOLUCIÓN EXPLICADA ---
 /*
@@ -53,6 +81,30 @@ function verificarInventario() {
 // 'nombre' y 'rol'. Debe devolver true si el rol es "admin" y false en caso contrario.
 
 // --- TU CÓDIGO AQUÍ ---
+console.log("> EJERCICIO 3: El Validador de Usuario");
+console.log("> Instrucciones: Declara una función dentro");
+console.log("> de una constante llamada 'esAdmin'.");
+console.log("> La función debe recibir un objeto como argumento");
+console.log("> que tenga las propiedades 'nombre' y 'rol'. ");
+console.log("> Debe devolver true si el rol es 'admin'");
+console.log("> y false en caso contrario.");
+
+const esAdmin = function (objeto) {
+  if (objeto.rol === "admin") {
+    return true;
+  }
+  return false;
+};
+
+const usuario = {
+  nombre: "César",
+  rol: "admin",
+};
+
+console.log("Objeto usuario: ", usuario);
+console.log(esAdmin(usuario));
+
+console.log("********************************************");
 
 // --- SOLUCIÓN EXPLICADA ---
 /*

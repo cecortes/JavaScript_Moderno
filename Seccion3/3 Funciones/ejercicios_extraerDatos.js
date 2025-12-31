@@ -15,6 +15,13 @@
 const producto = { id: 101, nombre: "Teclado Mecánico", precio: 85, stock: 10 };
 
 // --- TU CÓDIGO AQUÍ ---
+const extraerProducto = ({ nombre, precio }) => {
+  console.log({ nombre, precio });
+};
+
+extraerProducto(producto);
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
@@ -29,6 +36,13 @@ const mostrarProducto = ({ nombre, precio }) => {
 const dbUser = { u_id: 1, u_name: "César López", u_mail: "cesar@example.com" };
 
 // --- TU CÓDIGO AQUÍ ---
+const getDbUser = ({ u_name: nombre, u_mail: email }) => {
+  console.log({ nombre, email });
+};
+
+getDbUser(dbUser);
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
@@ -47,6 +61,13 @@ const procesarUsuario = ({ u_name: nombre, u_mail: email }) => {
 const puntuaciones = [100, 85, 70, 60, 45];
 
 // --- TU CÓDIGO AQUÍ ---
+const getPuntuaciones = ([ganador, ...otrosParticipantes]) => {
+  console.log({ ganador, otrosParticipantes });
+};
+
+getPuntuaciones(puntuaciones);
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
@@ -58,8 +79,20 @@ const [ganador, ...otrosParticipantes] = puntuaciones;
 // Instrucciones: Crea una función que desestructure un objeto de configuración.
 // Si la propiedad 'modo' no existe, debe ser "lectura" por defecto.
 const config = { usuario: "César" };
+const config2 = {
+  modo: "escritura",
+  usuario: "Roberto",
+};
 
 // --- TU CÓDIGO AQUÍ ---
+const getConfig = ({ modo = "lectura", usuario }) => {
+  console.log({ modo, usuario });
+};
+
+getConfig(config);
+getConfig(config2);
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
@@ -85,6 +118,10 @@ const empleado = {
 };
 
 // --- TU CÓDIGO AQUÍ ---
+const ciudad = empleado.detalles.direccion.ciudad;
+console.log(ciudad);
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
@@ -95,9 +132,18 @@ const { detalles: { direccion: { ciudad } } } = empleado;
 // EJERCICIO 6: Extracción en un Array de Objetos
 // Instrucciones: Tienes un array de usuarios. Usa .forEach() y desestructuración
 // para imprimir solo el 'id' de cada uno.
-const usuarios = [{ id: 1 }, { id: 2 }, { id: 3 }];
+const usuarios = [
+  { id: 1, nombre: "Juan", edo: true },
+  { id: 2, nombre: "Alberto", edo: false },
+  { id: 3, nombre: "Javier", edo: true },
+];
 
 // --- TU CÓDIGO AQUÍ ---
+usuarios.forEach(({ id }) => {
+  console.log(`ID del usuario: ${id}`);
+});
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
@@ -117,6 +163,15 @@ const post = {
 };
 
 // --- TU CÓDIGO AQUÍ ---
+const getPost = (apiRes) => {
+  console.log(`Nombre: ${apiRes.autor.nombre}`);
+  console.log(`Calificacion: ${apiRes.comentarios[0].calificacion}`);
+};
+
+console.log("Objeto post: ", post);
+getPost(post);
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
@@ -139,6 +194,13 @@ const cuentaPrivada = {
 };
 
 // --- TU CÓDIGO AQUÍ ---
+const makeCuentaPublica = ({ password, token, ...perfilPublico }) => {
+  console.log(perfilPublico);
+};
+
+makeCuentaPublica(cuentaPrivada);
+
+console.log("***********************************");
 
 // SOLUCIÓN EXPLICADA:
 /*
