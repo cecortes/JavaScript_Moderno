@@ -12,9 +12,14 @@
 /* 
     Pista: Usa typeof para verificar el tipo.
     
-    // TU CÓDIGO AQUÍ:
-    
 */
+let a = 10;
+let b = "Hola";
+
+const esValido = a === 10 && typeof b === "string";
+console.log("Ejercicio 1.1 - ¿Es válido?:", esValido); // true
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -27,10 +32,12 @@ console.log('Ejercicio 1.1 - ¿Es válido?:', esValido); // true
 
 // EJERCICIO 2: Lógica de Rango
 // Instrucciones: Determina si un número 'n' está fuera del rango [10, 20] (es decir, menor a 10 o mayor a 20).
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+let n = 5;
+const fueraRango = n < 10 || n > 20;
+console.log("Ejercicio 2: Rango 10 a 20");
+console.log(`El numero ${n} está fuera de rango?: ${fueraRango}`);
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -46,10 +53,16 @@ console.log('Ejercicio 1.2 - ¿Está fuera de rango?:', estaFueraDeRango); // tr
 
 // EJERCICIO 1: Inversor de Estado (Toggle)
 // Instrucciones: Tienes una variable 'estaCargando'. Crea una lógica que cambie su estado al valor opuesto.
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+let estado = 50;
+let load = true;
+let estaCargando = estado < 100 ? !load : load;
+
+console.log(
+  `Ejercicio 3: el estado es ${estado}, esta cargando?: ${estaCargando}`
+);
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -61,10 +74,15 @@ console.log('Ejercicio 2.1 - Estado de carga:', estaCargando); // false
 
 // EJERCICIO 2: Verificación de Contenido
 // Instrucciones: Usa el operador NOT para verificar si un string NO es nulo y NO está vacío.
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+console.log("Ejercicio 2:");
+
+let contenido = null;
+contenido !== null && contenido !== ""
+  ? console.log("Contenido")
+  : console.log("Nulo o vacío");
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -80,10 +98,17 @@ console.log('Ejercicio 2.2 - ¿Tiene contenido?:', tieneContenido); // true
 
 // EJERCICIO 1: Acceso Multi-Condición
 // Instrucciones: Un usuario puede descargar un archivo si tiene suscripción Y no tiene deudas pendientes.
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+let suscrip = true;
+let deudas = true;
+
+console.log("Acceso Multi-Condición:");
+
+suscrip && !deudas
+  ? console.log("Puedes descargar")
+  : console.log("No puedes cargar");
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -96,10 +121,17 @@ console.log('Ejercicio 3.1 - ¿Puede descargar?:', puedeDescargar); // true
 
 // EJERCICIO 2: Validación de Datos en Objeto
 // Instrucciones: Verifica si el objeto 'usuario' tiene las propiedades 'nombre' Y 'email' definidas (que no sean falsy).
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+console.log("Validación de Datos en Objeto");
+
+const usuario = {
+  email: "mail@mail.com",
+};
+usuario.nombre && usuario.email
+  ? console.log("Objeto incompleto")
+  : console.log("Objeto completo");
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -115,10 +147,15 @@ console.log('Ejercicio 3.2 - ¿Datos completos?:', datosCompletos); // true
 
 // EJERCICIO 1: Selección de Idioma
 // Instrucciones: Define una variable 'idiomaElegido'. Si el 'idiomaUsuario' es falsy (null o undefined), debe usar 'Español' por defecto.
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+let idiomaUsuario;
+
+const idiomaElegido = idiomaUsuario || "Español";
+
+console.log("Selección de Idioma:");
+console.log({ idiomaElegido });
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -130,10 +167,13 @@ console.log('Ejercicio 4.1 - Idioma:', idiomaElegido); // 'Español'
 
 // EJERCICIO 2: Permisos de Seguridad
 // Instrucciones: Una acción es permitida si el usuario es 'admin' O si es el 'autor' del post.
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+let user = "autor";
+const action = user === "admin" || user === "autor";
+
+console.log("Permisos de Seguridad:");
+console.log("Acción permitida?: ", action);
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -150,10 +190,18 @@ console.log('Ejercicio 4.2 - ¿Permite editar?:', permiteEditar); // true
 
 // EJERCICIO 1: Actualización de Perfil Activo
 // Instrucciones: Tienes un objeto 'perfil'. Solo si el perfil está 'activo' (true), cambia su nombre a 'Anónimo' usando el operador de asignación AND.
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+const perfil = {
+  nombre: "",
+  activo: true,
+};
+
+perfil.activo &&= perfil.nombre = "Anónimo";
+
+console.log("Actualización de Perfil Activo:");
+console.log(perfil);
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -165,10 +213,14 @@ console.log('Ejercicio 5.1 - Perfil:', perfil); // { activo: 'Anónimo', nombre:
 
 // EJERCICIO 2: Control de Logs
 // Instrucciones: Una variable 'debug' controla si se muestran mensajes. Si 'debug' es true, asígnale el mensaje 'Sistema Iniciado' usando el operador &&=
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+let debug = true;
+debug &&= "Sistema Iniciado";
+
+console.log("Control de logs:");
+console.log({ debug });
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -184,10 +236,14 @@ console.log('Ejercicio 5.2 - Estado Debug:', debug); // 'Sistema Iniciado'
 
 // EJERCICIO 1: Configuración de Servidor
 // Instrucciones: Si la variable 'puerto' no tiene un valor definido (es falsy), asígnale el puerto 8080 por defecto usando el operador ||=
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+let puerto;
+puerto ||= 8080;
+
+console.log("Configuración de Servidor");
+console.log({ puerto });
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
@@ -199,10 +255,17 @@ console.log('Ejercicio 6.1 - Puerto:', puerto); // 8080
 
 // EJERCICIO 2: Inicialización de Contador
 // Instrucciones: Crea un objeto 'stats'. Si la propiedad 'intentos' es 0 (falsy), inicialízala en 1 usando el operador de asignación OR.
-/* 
-    // TU CÓDIGO AQUÍ:
-    
-*/
+
+const stats = {
+  intentos: 0,
+};
+
+stats.intentos ||= 1;
+
+console.log("Inicialización de Contador");
+console.log(stats);
+
+console.log("*************************");
 
 /*
 // SOLUCIÓN EXPLICADA:
