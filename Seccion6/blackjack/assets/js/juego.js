@@ -1,6 +1,6 @@
 // Patrón Módulo
-(() => {
-  ("use strict");
+const MiModulo = (() => {
+  "use strict";
 
   const $nuevoJuego = document.querySelector("#btnNew");
   const $pedirCarta = document.querySelector("#btnAsk");
@@ -27,6 +27,20 @@
     for (let i = 0; i < numJugadores; i++) {
       puntosJugadores.push(0);
     }
+
+    // Reiniciamos table
+    $cartasJugador.forEach((element) => (element.innerText = ""));
+    $smalls.forEach((element) => (element.innerText = 0));
+    crearCarta("red_back", 0);
+    crearCarta("grey_back", 1);
+
+    //Re iniciar contadores
+    puntosJugadores[0] = 0;
+    puntosJugadores[1] = 0;
+
+    //Habilitar botones
+    $pedirCarta.disabled = false;
+    $detenJuego.disabled = false;
   };
 
   /**
@@ -126,6 +140,26 @@
   };
 
   /**
+   * determinarGanador
+   * @description Muestras las alerts dependiendo de que jugador ganó
+   * @param {None}
+   * @returns {None}
+   */
+  const determinarGanador = () => {
+    // Desestructurar puntos jugadores
+    const [puntosMinimos, puntosCpu] = puntosJugadores;
+
+    setTimeout(() => {
+      puntosCpu === puntosMinimos
+        ? alert("Empate!!!")
+        : (puntosCpu < 21 && puntosMinimos > 21) ||
+          (puntosCpu < 21 && puntosCpu > puntosMinimos)
+        ? alert("CPU ha ganado!!!")
+        : alert("Has ganado!!!");
+    }, 500);
+  };
+
+  /**
    * cpuTurn
    * @description Lógica para el juego de la computadora,
    * Seguirá jugando hasta que iguale el puntaje del jugador,
@@ -144,38 +178,14 @@
       }
     } while (puntosJugadores[1] < 21 && puntosJugadores[1] < puntosMinimos);
 
-    setTimeout(() => {
-      puntosJugadores[1] === puntosMinimos
-        ? alert("Empate!!!")
-        : (puntosJugadores[1] < 21 && puntosMinimos > 21) ||
-          (puntosJugadores[1] < 21 && puntosJugadores[1] > puntosMinimos)
-        ? alert("CPU ha ganado!!!")
-        : alert("Has ganado!!!");
-    }, 500);
+    determinarGanador();
   };
 
   inicializarJuego();
 
   //Eventos
   $nuevoJuego.addEventListener("click", () => {
-    // Reiniciamos table
-    $cartasJugador[0].innerHTML = "";
-    $cartasJugador[1].innerHTML = "";
-    crearCarta("red_back", 0);
-    crearCarta("grey_back", 1);
-
-    //Re iniciar contadores
-    puntosJugadores[0] = 0;
-    puntosJugadores[1] = 0;
-    $smalls[0].innerText = 0;
-    $smalls[1].innerText = 0;
-
-    // Nuevo Deck
-    deck = crearDeck(tipos, especiales);
-
-    //Habilitar botones
-    $pedirCarta.disabled = false;
-    $detenJuego.disabled = false;
+    inicializarJuego();
   });
 
   $pedirCarta.addEventListener("click", () => {
@@ -198,4 +208,9 @@
     $detenJuego.disabled - true;
     cpuTurn(puntosJugadores[0]);
   });
+
+  // Público
+  return {
+    newGame: inicializarJuego,
+  };
 })();
