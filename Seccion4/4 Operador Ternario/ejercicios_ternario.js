@@ -25,6 +25,12 @@ const usuario1 = {
 };
 
 // --- Escribe tu solución aquí ---
+console.log("EJERCICIO 1: Validación de Acceso a Contenido");
+let puedeVerPelicula =
+  usuario1.esPremium || usuario1.creditos >= 10 ? true : false;
+console.log({ puedeVerPelicula });
+
+console.log("*********************************************");
 
 // --- Solución Explicada ---
 /*
@@ -47,9 +53,15 @@ console.log('¿Puede ver la película?:', puedeVerPeliculaSimplificada); // Resu
  * Usa ternarios anidados y muestra el resultado en consola.
  */
 
-const puntaje = 82;
+const puntaje = 60;
 
 // --- Escribe tu solución aquí ---
+console.log("EJERCICIO 2: Clasificación de Rendimiento Académico (Anidación)");
+const calificacion =
+  puntaje < 70 ? "F" : puntaje < 80 ? "C" : puntaje < 90 ? "B" : "A";
+console.log({ calificacion });
+
+console.log("*********************************************");
 
 // --- Solución Explicada ---
 /*
@@ -81,6 +93,17 @@ const pedido = {
 };
 
 // --- Escribe tu solución aquí ---
+console.log("EJERCICIO 3: Configuración de Notificaciones (Lógica de Negocio)");
+let estadoNotificacion = pedido.cancelado
+  ? "Pedido Cancelado"
+  : pedido.entregado
+  ? "Pedido Entregado"
+  : pedido.enCamino
+  ? "Pedido en Ruta"
+  : "Procesando Pedido";
+console.log({ estadoNotificacion });
+
+console.log("*********************************************");
 
 // --- Solución Explicada ---
 /*
@@ -107,6 +130,16 @@ const precioBase = 100;
 const tipoCliente = "VIP";
 
 // --- Escribe tu solución aquí ---
+console.log("EJERCICIO 4: Formateo de Precios con Descuento");
+const precioFinal =
+  tipoCliente === "VIP"
+    ? precioBase * 0.8
+    : tipoCliente === "REGULAR"
+    ? precioBase * 0.95
+    : precioBase;
+console.log(`Precio final: $${precioFinal.toFixed(2)}`);
+
+console.log("*********************************************");
 
 // --- Solución Explicada ---
 /*
@@ -134,8 +167,22 @@ console.log(`Precio Final: $${precioFinal.toFixed(2)}`); // Resultado: $80.00
  */
 
 const datosAPI = { error: "No autorizado" };
+//const datosAPI = ["Manzana", "Pera", "Jamón"];
+//const datosAPI = [];
+//const datosAPI = {};
 
 // --- Escribe tu solución aquí ---
+console.log("EJERCICIO 5: Manejo de Datos de API (Seguridad y Fallbacks)");
+const mensajeUsuario = Array.isArray(datosAPI)
+  ? datosAPI.length > 0
+    ? `Tienes ${datosAPI.length} productos`
+    : "No hay productos disponibles"
+  : Object.hasOwn(datosAPI, "error")
+  ? `Error: ${datosAPI.error}`
+  : "Cargando...";
+console.log({ mensajeUsuario });
+
+console.log("*********************************************");
 
 // --- Solución Explicada ---
 /*
