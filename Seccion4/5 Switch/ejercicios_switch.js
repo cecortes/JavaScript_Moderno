@@ -22,6 +22,33 @@
  */
 
 // --- TU CÓDIGO AQUÍ ---
+const calificaciones = (nota) => {
+  console.log("EJERCICIO 1: Clasificación de Calificaciones");
+
+  switch (nota.toUpperCase()) {
+    case "A":
+      console.log("Excelente trabajo");
+      break;
+    case "B":
+      console.log("Buen trabajo");
+      break;
+    case "C":
+      console.log("Puedes mejorar");
+      break;
+    case "D":
+      console.log("Apenas aprobado");
+      break;
+    case "F":
+      console.log("Reprobado");
+      break;
+    default:
+      console.log("Calificación no válida");
+  }
+};
+
+calificaciones("a");
+
+console.log("=============================================================");
 
 // --- SOLUCIÓN COMENTADA ---
 /**
@@ -60,6 +87,30 @@
  */
 
 // --- TU CÓDIGO AQUÍ ---
+console.log("EJERCICIO 2: Calculadora de Operaciones Básicas");
+
+const num1 = 10;
+const num2 = 15;
+const operacion = "restar";
+
+switch (operacion) {
+  case "sumar":
+    console.log(`Sumar ${num1} + ${num2} = ${num1 + num2}`);
+    break;
+  case "restar":
+    console.log(`Restar ${num1} - ${num2} = ${num1 - num2}`);
+    break;
+  case "multiplicar":
+    console.log(`Multiplicar ${num1} x ${num2} = ${num1 * num2}`);
+    break;
+  case "dividir":
+    console.log(`Dividir ${num1} / ${num2} = ${num1 / num2}`);
+    break;
+  default:
+    console.log("Operación no válida");
+}
+
+console.log("=============================================================");
 
 // --- SOLUCIÓN COMENTADA ---
 /**
@@ -91,16 +142,36 @@
 /**
  * Instrucciones:
  * Imagina que tienes una aplicación que soporta varios idiomas.
- * Crea un switch que reciba un código de idioma (es, en, fr, it)
+ * Crea un switch que reciba un código de idioma (es, en, fr)
  * y muestre un saludo en el idioma correspondiente:
  * - 'es': "Hola, bienvenido"
  * - 'en': "Hello, welcome"
  * - 'fr': "Bonjour, bienvenue"
- * - 'it': "Ciao, benvenuto"
  * - Otros: "Idioma no soportado / Language not supported"
  */
 
 // --- TU CÓDIGO AQUÍ ---
+console.log("EJERCICIO 3: Selector de Idiomas");
+
+const idiomas = (idioma) => {
+  switch (idioma) {
+    case "es":
+      console.log("Hola, bienvenido");
+      break;
+    case "en":
+      console.log("Hello, welcome");
+      break;
+    case "fr":
+      console.log("Bonjour, bienvenue");
+      break;
+    default:
+      console.log("Idioma no soportado / Language not supported");
+  }
+};
+
+idiomas("fr");
+
+console.log("=============================================================");
 
 // --- SOLUCIÓN COMENTADA ---
 /**
