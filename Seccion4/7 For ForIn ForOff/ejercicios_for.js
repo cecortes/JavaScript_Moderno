@@ -16,6 +16,25 @@
  */
 
 // --- Espacio para tu solución ---
+console.log("EJERCICIO 1: EL FILTRO DE FIBONACCI (Ciclo For)");
+let arrayFibo = [0, 1];
+let arrayImp = [];
+
+for (let i = 0; i < 13; i++) {
+  let numA = arrayFibo[arrayFibo.length - 2];
+  let numB = arrayFibo[arrayFibo.length - 1];
+
+  arrayFibo.push(numA + numB);
+
+  // Check if odds
+  !((numA + numB) % 2)
+    ? console.log(`${numA + numB} Es par`)
+    : arrayImp.push(numA + numB);
+}
+
+console.log({ arrayFibo, arrayImp });
+
+console.log("****************************************************");
 
 // --- Fin del espacio ---
 
@@ -58,6 +77,22 @@ const inventario = {
 };
 
 // --- Espacio para tu solución ---
+console.log(
+  "EJERCICIO 2: CONTADOR DE TIPOS EN OBJETOS ANIDADOS (Ciclo For In)"
+);
+let contador = 0;
+
+for (let categoria in inventario) {
+  for (let producto in inventario[categoria]) {
+    inventario[categoria][producto] > 100
+      ? contador++
+      : console.log(inventario[categoria][producto]);
+  }
+}
+
+console.log({ contador });
+
+console.log("*****************************************");
 
 // --- Fin del espacio ---
 
@@ -90,9 +125,25 @@ console.log('Ejercicio 2 - Productos > 100:', productosCaros);
  */
 
 const texto =
-  "Programar en JavaScript es asombroso, pero requiere mucha práctica y constancia.";
+  "Programar en JavaScript es asombroso, pero requiere mucha práctica y constancia";
 
 // --- Espacio para tu solución ---
+console.log("EJERCICIO 3: ANALIZADOR DE TEXTO (Ciclo For Of)");
+let palabra = "";
+let largo = 0;
+const arrayWords = texto.split(" ");
+console.log({ arrayWords });
+
+for (word of arrayWords) {
+  if (word.length > largo) {
+    palabra = word;
+    largo = word.length;
+  }
+}
+
+console.log(`${palabra} tiene longuitud de ${largo}`);
+
+console.log("*********************************************");
 
 // --- Fin del espacio ---
 
@@ -131,6 +182,17 @@ const matrizOriginal = [
 ];
 
 // --- Espacio para tu solución ---
+const transpuesta = [[], [], []];
+
+for (let i = 0; i < matrizOriginal.length; i++) {
+  for (let j = 0; j < matrizOriginal[i].length; j++) {
+    transpuesta[j][i] = matrizOriginal[i][j];
+  }
+}
+console.log("Ejercicio 4 - Matriz Transpuesta:");
+console.table(transpuesta);
+
+console.log("********************************************");
 
 // --- Fin del espacio ---
 
@@ -168,6 +230,26 @@ const ventas = {
 };
 
 // --- Espacio para tu solución ---
+console.log("EJERCICIO 5: FUSIÓN DE DATOS (For In + For Of)");
+
+let counter = 1;
+const newVentas = {
+  enero: 0,
+  febrero: 0,
+  marzo: 0,
+};
+
+for (let mes in ventas) {
+  let promedio = 0;
+  for (let venta of ventas[mes]) {
+    promedio += venta;
+  }
+  newVentas[mes] = promedio / ventas[mes].length;
+}
+
+console.log(newVentas);
+
+console.log("********************************************");
 
 // --- Fin del espacio ---
 
@@ -202,6 +284,18 @@ console.log('Ejercicio 5 - Promedios mensuales:', promedios);
 const duplicadosInput = [1, 2, 3, 2, 4, 5, 1, 6, 1, 7, 8, 2];
 
 // --- Espacio para tu solución ---
+console.log("EJERCICIO 6: BÚSQUEDA DE DUPLICADOS (Ciclo For Of)");
+const conteo = {};
+const repetidos = [];
+
+for (let num of duplicadosInput) {
+  conteo[num] = (conteo[num] || 0) + 1;
+  if (conteo[num] === 2) {
+    repetidos.push(num);
+  }
+}
+
+console.log({ conteo }, repetidos);
 
 // --- Fin del espacio ---
 
