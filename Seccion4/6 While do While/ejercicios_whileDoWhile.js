@@ -15,6 +15,26 @@
  */
 
 // --- Tu solución aquí ---
+console.log("EJERCICIO 1: EL CAJERO AUTOMÁTICO (While)");
+const cajero = () => {
+  let saldo = 500;
+  const retiro = 25;
+
+  while (saldo > 0) {
+    if (saldo <= 0) {
+      console.log("Cuenta vacía");
+      break;
+    } else if (saldo <= 200) {
+      console.log("Saldo bajo, use con cuidado");
+    }
+    saldo -= retiro;
+    console.log({ saldo });
+  }
+};
+
+cajero();
+
+console.log("**********************************");
 
 // --- Solución Explicada ---
 /*
@@ -50,6 +70,25 @@ while (saldo >= 0) {
  */
 
 // --- Tu solución aquí ---
+console.log("EJERCICIO 2: VALIDACIÓN DE DATOS ROBUSTA (Do While)");
+
+const clave = "JS_Master_2024";
+const arrayTry = ["asd", "dafda", "word", "adsfad", "jijiji"];
+let intento = 0;
+
+do {
+  console.log({ intento });
+  if (arrayTry[intento] === clave) {
+    console.log(`Acceso concedido en el intento: ${intento}`);
+    break;
+  } else if (intento === 2) {
+    console.log("Acceso bloqueado");
+    break;
+  }
+  intento++;
+} while (arrayTry.length - 1);
+
+console.log("******************************************");
 
 // --- Solución Explicada ---
 /*
@@ -88,6 +127,18 @@ do {
  */
 
 // --- Tu solución aquí ---
+console.log("EJERCICIO 3: SERIE FIBONACCI LIMITADA (While)");
+let arrayFibo = [0, 1];
+
+while (true) {
+  const fiboA = arrayFibo[arrayFibo.length - 1];
+  const fiboB = arrayFibo[arrayFibo.length - 2];
+  if (fiboA + fiboB > 100) break;
+  arrayFibo.push(fiboA + fiboB);
+}
+console.log({ arrayFibo });
+
+console.log("***********************************");
 
 // --- Solución Explicada ---
 /*
@@ -119,6 +170,30 @@ while (true) {
  */
 
 // --- Tu solución aquí ---
+console.log("EJERCICIO 4: FILTRADO DE NÚMEROS PRIMOS (While + Continue)");
+let num = 1;
+while (num <= 20) {
+  //Evaluar si es primo
+  let esPrimo = true;
+
+  if (num <= 1) esPrimo = false;
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      esPrimo = false;
+      break;
+    }
+  }
+
+  if (esPrimo) {
+    num++;
+    continue; // Si es primo, saltamos al siguiente sin imprimir
+  }
+
+  console.log(`${num} no es un número primo.`);
+  num++;
+}
+
+console.log("***********************************");
 
 // --- Solución Explicada ---
 /*
@@ -157,6 +232,33 @@ while (num <= 20) {
  */
 
 // --- Tu solución aquí ---
+console.log("EJERCICIO 5: BUSCADOR DE ELEMENTOS EN MATRIZ (While Anidado)");
+
+const inventario = [
+  ["manzana", "pera"],
+  ["botas", "camisa"],
+  ["libro", "pluma"],
+];
+
+let fila = 0;
+let encontrado = false;
+
+while (fila < inventario.length && !encontrado) {
+  let columna = 0;
+  while (columna < inventario[fila].length) {
+    if (inventario[fila][columna] === "camisa") {
+      console.log(
+        `Elemento encontrado en la categoría (fila) ${fila}, posición ${columna}`
+      );
+      encontrado = true;
+      break; // Rompe el ciclo interno
+    }
+    columna++;
+  }
+  fila++;
+}
+
+console.log("*******************************************");
 
 // --- Solución Explicada ---
 /*
@@ -195,6 +297,23 @@ while (fila < inventario.length && !encontrado) {
  */
 
 // --- Tu solución aquí ---
+console.log("EJERCICIO 6: SIMULADOR DE DESCARGA (Do While)");
+
+let progreso = 0;
+
+do {
+  // Generar avance aleatorio entre 5 y 25
+  let avance = Math.floor(Math.random() * (25 - 5 + 1)) + 5;
+  progreso += avance;
+
+  if (progreso > 100) progreso = 100;
+
+  console.log(`Progreso de descarga: ${progreso}%`);
+} while (progreso < 100);
+
+console.log("¡Archivo listo para usar!");
+
+console.log("**********************************");
 
 // --- Solución Explicada ---
 /*
