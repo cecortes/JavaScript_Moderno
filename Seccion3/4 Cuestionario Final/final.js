@@ -10,6 +10,11 @@
 // 1. Usa splice para eliminar los dos elementos centrales de un array de longitud par.
 let numbers1 = [1, 2, 3, 4, 5, 6];
 // Escribe tu código aquí:
+console.log({ numbers1 });
+const mitad = numbers1.length / 2;
+numbers1.splice(mitad - 1, 2);
+console.log({ numbers1 });
+console.log("***********************************");
 
 /* SOLUCIÓN:
 numbers1.splice((numbers1.length / 2) - 1, 2); 
@@ -19,6 +24,11 @@ Explicación: Calculamos el índice medio restando 1 y eliminamos 2 elementos.
 // 2. Implementa un shift manual usando splice.
 let fruits2 = ["Manzana", "Pera", "Uva"];
 // Escribe tu código aquí:
+console.log([fruits2]);
+const shiftManual = fruits2.splice(0, 1)[0];
+fruits2.push(shiftManual);
+console.log({ fruits2 });
+console.log("***********************************");
 
 /* SOLUCIÓN:
 let removed = fruits2.splice(0, 1)[0];
@@ -29,6 +39,13 @@ Explicación: splice(0, 1) devuelve un array con el primer elemento y modifica e
 let tags = ["js", "html", "js", "css", "js", "html"];
 let freq = {};
 // Escribe tu código aquí:
+tags.forEach((tag) => {
+  freq[tag] = (freq[tag] || 0) + 1;
+});
+
+console.log({ tags });
+console.log({ freq });
+console.log("*****************************************");
 
 /* SOLUCIÓN:
 tags.forEach(tag => freq[tag] = (freq[tag] || 0) + 1);
@@ -39,6 +56,9 @@ Explicación: Por cada elemento, incrementamos su contador en el objeto freq.
 let objRef = { id: 1 };
 let list4 = [{ id: 0 }, objRef, { id: 2 }];
 // Escribe tu código aquí:
+const indiceRef = list4.indexOf(objRef);
+console.log({ indiceRef });
+console.log("*****************************************");
 
 /* SOLUCIÓN:
 let index = list4.indexOf(objRef);
@@ -48,6 +68,10 @@ Explicación: indexOf funciona con referencias de memoria, no con igualdad estru
 // 5. Usa unshift para agregar múltiples elementos y explica el orden resultante.
 let queue = [3, 4];
 // Escribe tu código aquí:
+console.log(queue);
+queue.unshift(1, 2);
+console.log(queue);
+console.log("*****************************************");
 
 /* SOLUCIÓN:
 queue.unshift(1, 2); // Resultado: [1, 2, 3, 4]
@@ -55,8 +79,27 @@ Explicación: Al pasar múltiples argumentos a unshift, se insertan en el bloque
 */
 
 // 6. Crea una función que rote un array a la derecha N veces usando pop y unshift.
+function rotarArrayDerecha(nVeces) {
+  let arrayOriginal = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  console.log(arrayOriginal);
+  for (let i = 0; i < nVeces; i++) {
+    arrayOriginal.unshift(arrayOriginal.pop());
+  }
+  console.log(arrayOriginal);
+}
+
+rotarArrayDerecha(2);
+console.log("****************************************");
+
 // 7. Usa splice para insertar un array dentro de otro en una posición específica.
+let arrayIns = [0, 1, 2, 3, 4];
+let arrayIn = ["a", "b"];
+console.log(arrayIns);
+arrayIns.splice(2, 0, arrayIn);
+console.log(arrayIns);
+
 // 8. Dado un array de strings, filtra y transforma usando forEach (sin usar filter/map).
+
 // 9. Implementa una búsqueda bidireccional usando indexOf con el segundo parámetro de posición.
 // 10. Vacía un array de 100 elementos sin usar "array = []" (usa length).
 /* SOLUCIÓN (10):
