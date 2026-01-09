@@ -1,4 +1,3 @@
-// Sintáxis
 class Persona {
   //Propiedades estáticas
   static _conteo = 0;
@@ -52,32 +51,17 @@ class Persona {
   }
 }
 
+class Heroe extends Persona {
+  clan = "Sin clan";
+
+  constructor(nombre, codigo, frase) {
+    super(nombre, codigo, frase);
+    this.clan = "Avengers";
+  }
+}
+
 const spiderman = new Persona("Peter", "Spiderman", "Su amigo amigable");
-const ironman = new Persona(
-  "Tony",
-  "Ironman",
-  "Filántropo, Inventor y Playboy"
-);
-// console.log(spiderman);
-// console.log(ironman);
+const venon = new Heroe("Peter", "Vennon", "Soy vennon");
 
-// spiderman.quienSoy();
-spiderman.miFrase();
-// ironman.quienSoy();
-ironman.miFrase();
-
-// Uso del set
-spiderman.setComidaFavorita = "Pie de manzana";
-ironman.setComidaFavorita = "Hamburguesa";
-console.log(spiderman.getComidaFavorita);
-console.log(ironman.getComidaFavorita);
-
-// Uso de propiedad estática
-//Persona._conteo = 2;
-console.log("Conteo estático: ", Persona._conteo);
-
-// Uso de get estático
-console.log(Persona.conteo);
-
-// Uso de método estático
-Persona.mensaje();
+console.log(venon);
+venon.quienSoy();
