@@ -99,9 +99,27 @@ arrayIns.splice(2, 0, arrayIn);
 console.log(arrayIns);
 
 // 8. Dado un array de strings, filtra y transforma usando forEach (sin usar filter/map).
+const array = ["frío", "perro", "azul", "verde", "a", "b", "c"];
+console.log(array);
+let filtro = "a";
+array.forEach((item, index) => {
+  if (item === filtro) array.splice(index, 1);
+});
+console.log(array);
+
+console.log("****************************************");
 
 // 9. Implementa una búsqueda bidireccional usando indexOf con el segundo parámetro de posición.
+console.log(array);
+filtro = "perro";
+let indiceBusqueda = array.indexOf(filtro);
+console.log(`Index: ${indiceBusqueda}`);
+console.log("****************************************");
+
 // 10. Vacía un array de 100 elementos sin usar "array = []" (usa length).
+array.length = 0;
+
+console.log("****************************************");
 /* SOLUCIÓN (10):
 array.length = 0; 
 Explicación: Modificar la propiedad length trunca el array original.
