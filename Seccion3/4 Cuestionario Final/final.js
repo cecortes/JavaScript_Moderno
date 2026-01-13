@@ -132,6 +132,11 @@ Explicación: Modificar la propiedad length trunca el array original.
 // 11. Usa Object.freeze en un objeto y luego intenta borrar una propiedad con delete. Observa qué pasa.
 const config = { status: "active" };
 // Escribe tu código aquí:
+Object.freeze(config);
+let resDelete = delete config.status;
+console.log({ resDelete });
+
+console.log("****************************************");
 
 /* SOLUCIÓN:
 Object.freeze(config);
@@ -140,14 +145,84 @@ Explicación: freeze hace al objeto inmutable.
 */
 
 // 12. Usa Object.entries para convertir un objeto de precios {pan: 10, leche: 20} en un string "pan: $10, leche: $20".
+const precios = {
+  pan: 10,
+  leche: 20,
+};
+let stringPrecios = "";
+let arrayPrecios = Object.entries(precios);
+for (let item of arrayPrecios) {
+  stringPrecios += `${item[0]}: $${item[1]}, `;
+}
+console.log(precios, stringPrecios);
+
+console.log("****************************************");
+
 // 13. Obtén solo las propiedades NO heredadas de un objeto complejo usando Object.getOwnPropertyNames.
+const objetoPadre = {
+  nombre: "",
+  apellido: "",
+};
+
+const objetoHijo = {
+  objetoPadre,
+  apodo: ",",
+};
+
+const propiedadesHijo = Object.getOwnPropertyNames(objetoHijo);
+
+console.log({ objetoPadre }, { propiedadesHijo });
+
+console.log("****************************************");
+
 // 14. Usa Object.values para sumar todos los valores numéricos de un objeto.
+const objetoNumero = {
+  a: 0,
+  b: 1,
+  c: 2,
+  d: 3,
+};
+let suma = 0;
+
+const valorNum = Object.values(objetoNumero);
+valorNum.forEach((numero) => {
+  suma += numero;
+});
+
+console.log({ objetoNumero }, { suma });
+
+console.log("****************************************");
+
 // 15. Crea un clon superficial (shallow copy) de un objeto usando Object.entries y forEach.
+const objetoOriginal = {
+  status: "activo",
+  valor: 20,
+  actividad: 50,
+};
+
+const objetoCopia = {};
+
+const arrayEntries = Object.entries(objetoOriginal);
+arrayEntries.forEach((valor) => {
+  objetoCopia[valor[0]] = valor[1];
+});
+
+// Mejor praxis
+const shallowCopy = { ...objetoOriginal };
+
+console.log({ objetoOriginal, objetoCopia, shallowCopy });
+
+console.log("****************************************");
 
 // 16. Usa delete para eliminar una propiedad dinámica basada en una variable.
 let keyToDelete = "tempData";
 let session = { user: "César", tempData: "404" };
 // Escribe tu código aquí:
+console.log({ session });
+delete session[keyToDelete];
+console.log({ session });
+
+console.log("****************************************");
 
 /* SOLUCIÓN:
 delete session[keyToDelete];
@@ -155,10 +230,38 @@ Explicación: Se usa la notación de corchetes para evaluar la variable antes de
 */
 
 // 17. Verifica si un objeto está congelado antes de intentar modificarlo.
-// 18. Itera sobre un objeto usando Object.entries y desestructuración en el bucle.
-// 19. Crea un objeto que no pueda ser extendido (Object.preventExtensions) y prueba añadir propiedades.
-// 20. Usa Object.getOwnPropertyNames para contar cuántas propiedades tiene un objeto sin usar un bucle manual.
+console.log("El objeto config está protegido?: ", Object.isFrozen(config));
 
+console.log("****************************************");
+
+// 18. Itera sobre un objeto usando Object.entries y desestructuración en el bucle.
+Object.entries(objetoNumero).forEach(([key, valor]) => {
+  console.log(key, valor);
+});
+
+console.log("****************************************");
+
+// 19. Crea un objeto que no pueda ser extendido (Object.preventExtensions) y prueba añadir propiedades.
+const objNoExtend = {
+  impresora: "si",
+  valor: 1000,
+};
+
+console.log({ objNoExtend });
+Object.preventExtensions(objNoExtend);
+objNoExtend.status = "activo";
+
+console.log("****************************************");
+
+// 20. Usa Object.getOwnPropertyNames para contar cuántas propiedades tiene un objeto sin usar un bucle manual.
+console.log({ objetoNumero });
+
+console.log(
+  "Número de propiedades: ",
+  Object.getOwnPropertyNames(objetoNumero).length
+);
+
+console.log("****************************************");
 // ==========================================
 // SECCIÓN 3: FUNCIONES Y ARGUMENTS (21-30)
 // ==========================================
