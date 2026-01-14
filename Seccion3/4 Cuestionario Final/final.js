@@ -265,11 +265,23 @@ console.log("****************************************");
 // ==========================================
 // SECCIÓN 3: FUNCIONES Y ARGUMENTS (21-30)
 // ==========================================
+console.log("****************************************");
 
 // 21. Crea una función que sume N cantidad de argumentos usando el objeto "arguments".
-function sumAll() {
+function sumAll(n1, n2, n3, n4, n5) {
   // Escribe tu código aquí:
+  let total = 0;
+
+  for (let i = 0; i < arguments.length; i++) {
+    total += arguments[i];
+  }
+
+  return total;
 }
+
+console.log(sumAll(10, 20, 30, 40, 50));
+
+console.log("****************************************");
 
 /* SOLUCIÓN:
 let total = 0;
@@ -279,24 +291,122 @@ Explicación: arguments es un objeto similar a un array disponible en funciones 
 */
 
 // 22. Convierte el objeto "arguments" en un array real usando métodos de Array.
+function argsToArray(arg1, arg2, arg3) {
+  let array = [...arguments];
+
+  console.log({ arguments, array });
+}
+
+argsToArray("a", "b", "c");
+
+console.log("****************************************");
+
 // 23. Crea una función anónima autoejecutable (IIFE) que reciba el objeto global como parámetro.
+const autoExe = ((global) => {
+  global = "Hola";
+  console.log(global);
+})();
+
+console.log("****************************************");
+
 // 24. Pasa una función anónima como callback a un forEach para modificar un array externo.
+let arrayExterno = ["a", "b", "c"];
+console.log({ arrayExterno });
+arrayExterno.forEach((item) => {
+  item += "1";
+  arrayExterno.push(item);
+});
+console.log({ arrayExterno });
+
+console.log("****************************************");
+
 // 25. Crea una función que retorne otra función (clausura) usando funciones anónimas.
+const apertura = () => {
+  let msg2 = () => {
+    let msg = " Mundo!!!";
+    return msg;
+  };
+
+  let msg = "Hola" + msg2();
+
+  console.log(msg);
+};
+
+apertura();
+
+console.log("****************************************");
 
 // 26. Intenta acceder a "arguments" dentro de una función de flecha y explica por qué falla.
 const arrowArgs = () => {
-  // console.log(arguments);
+  console.log(arguments);
 };
 // Escribe la explicación:
+// Función flecha no tiene un objeto arguments, pero heredan el del padre si existe.
 
 /* SOLUCIÓN:
 Las funciones de flecha no tienen su propio objeto 'arguments'. Heredan el del scope padre si existe.
 */
 
 // 27. Crea una función que valide si el número de argumentos pasados coincide con los esperados.
+function validaArgs(arg1, num) {
+  if (arguments.length !== 2) throw new Error("Debes pasar 2 argumentos");
+
+  console.log("Argumentos válidos");
+}
+
+validaArgs("a", 1);
+
+console.log("****************************************");
+
 // 28. Usa una función anónima para ordenar un array de objetos por una propiedad específica.
+const obj1 = {
+  prioridad: 2,
+  actividad: "algo",
+};
+
+const obj2 = {
+  prioridad: 1,
+};
+
+const obj3 = {
+  prioridad: 3,
+};
+
+let arrayObjetos = [obj1, obj2, obj3];
+
+const ordenarObjetos = (objetos) => {
+  console.log(
+    objetos.sort((op1, op2) => {
+      return op1.prioridad - op2.prioridad;
+    })
+  );
+};
+
+ordenarObjetos(arrayObjetos);
+
+console.log("****************************************");
+
 // 29. Implementa un decorador simple (función que recibe función) usando funciones tradicionales.
+function tradicional() {
+  return "Hola desde funcion!!!";
+}
+
+function decorador(callback) {
+  console.log("Hola desde decorador " + callback());
+}
+
+decorador(tradicional);
+
+console.log("****************************************");
+
 // 30. Crea una función que use "arguments" para concatenar strings con un separador dinámico.
+function concatenaStrings(str1, str2, separador) {
+  console.log(arguments[0] + arguments[2] + arguments[1]);
+}
+
+concatenaStrings("Hola", "Mundo", "+/-");
+
+console.log("****************************************");
 
 // ==========================================
 // SECCIÓN 4: ARROW FUNCTIONS Y THIS (31-40)
