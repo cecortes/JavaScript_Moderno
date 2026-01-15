@@ -360,15 +360,18 @@ console.log("****************************************");
 
 // 28. Usa una función anónima para ordenar un array de objetos por una propiedad específica.
 const obj1 = {
+  id: 1,
   prioridad: 2,
   actividad: "algo",
 };
 
 const obj2 = {
+  id: 2,
   prioridad: 1,
 };
 
 const obj3 = {
+  id: 3,
   prioridad: 3,
 };
 
@@ -411,16 +414,22 @@ console.log("****************************************");
 // ==========================================
 // SECCIÓN 4: ARROW FUNCTIONS Y THIS (31-40)
 // ==========================================
-
+console.log("****************************************");
 // 31. Crea un objeto "contador" con un método que use una arrow function para mantener el contexto de "this".
 const contador = {
   valor: 0,
   iniciar: function () {
     setInterval(() => {
       // Tu código aquí
+      this.valor++;
+      console.log(this.valor);
     }, 1000);
   },
 };
+
+//contador.iniciar();
+
+console.log("****************************************");
 
 /* SOLUCIÓN:
 this.valor++;
@@ -428,16 +437,80 @@ Explicación: La arrow function captura el 'this' del método iniciar (que apunt
 */
 
 // 32. Explica por qué un método definido como arrow function en un objeto falla al intentar acceder a propiedades del objeto.
+// Porque su scope está dentro del método en sí, no dentro del objeto.
+
 // 33. Escribe una arrow function de una sola línea que devuelva un objeto (tip: paréntesis).
 const getObj = (id) => ({ id: id });
 
 // 34. Convierte una función tradicional con múltiples retornos en una cadena de arrow functions (currying).
+const multiply = (a, b) => a * b;
+const curriedMultiply = (a) => (b) => a * b;
+
+console.log(curriedMultiply(2)(3));
+
+console.log("****************************************");
+
 // 35. Usa una arrow function dentro de un map para extraer solo los IDs de un array de objetos.
+console.log({ arrayObjetos });
+arrayObjetos.map((value) => {
+  console.log(value.id);
+});
+
+console.log("****************************************");
+
 // 36. Crea un listener de eventos (simulado) donde el 'this' sea el objeto global debido a una arrow function.
+const global = () => {
+  const msg = "global";
+  return msg;
+};
+
+const arrowHija = (global) => {
+  this.hija = global();
+  console.log(this.hija);
+};
+
+arrowHija(global);
+
+console.log("****************************************");
+
 // 37. Demuestra que .bind() no funciona para cambiar el context de una arrow function.
+/*
+- Funciones Tradicionales: Una función tradicional obtiene su valor de this basándose en cómo es llamada (vinculación dinámica). Por lo tanto, .bind(), .call() y .apply() pueden modificar su contexto.
+
+- Arrow Functions: Las funciones flecha no tienen su propio this. Heredan el valor this del ámbito circundante o padre donde fueron definidas (vinculación léxica).
+*/
+
 // 38. Usa arrow functions para filtrar números pares y elevarlos al cuadrado en una sola línea.
+const evenSqr = (num) => {
+  if (num % 2 === 0) num * num;
+};
+
+console.log(evenSqr(6));
+
+console.log("****************************************");
+
 // 39. Crea una función de flecha que reciba otra función y la ejecute tras 500ms.
+const otraFun = () => {
+  console.log("Función con timeout");
+};
+
+const delayArrow = (fun) => {
+  setTimeout(fun, 500);
+};
+
+delayArrow(otraFun);
+
+console.log("****************************************");
+
 // 40. Define una arrow function que use el parámetro REST (...args) para suplir la falta de "arguments".
+const restArrow = (...args) => {
+  const argumentos = args;
+  console.log(argumentos);
+};
+
+restArrow("a", "b", "c", "d");
+
+console.log("****************************************");
 
 // ==========================================
 // SECCIÓN 5: DESESTRUCTURACIÓN Y OBJETOS COMPLEJOS (41-50)
