@@ -516,13 +516,41 @@ console.log("****************************************");
 // SECCIÓN 5: DESESTRUCTURACIÓN Y OBJETOS COMPLEJOS (41-50)
 // ==========================================
 
+console.log("****************************************");
 // 41. Desestructura los parámetros de una función de flecha que recibe un objeto usuario {nombre, perfil: {rol}}.
 const checkAdmin = ({ perfil: { rol } }) => rol === "admin";
+const usuarioAdmin = {
+  nombre: "Jane Doe",
+  perfil: {
+    rol: "admin",
+    nivel: "senior",
+  },
+};
+
+console.log(checkAdmin(usuarioAdmin)); // Devuelve: true
+
+console.log("****************************************");
 
 // 42. Extrae el primer elemento de un array y guarda el resto en una variable usando desestructuración en una función.
+console.log(arrayExterno);
+const destructurarPrimerElemento = ([n1, ...resto]) => {
+  console.log(n1); // Primer Elemento
+  let arrayElemRestantes = resto; // Restantes
+  console.log(arrayElemRestantes);
+};
+
+destructurarPrimerElemento(arrayExterno);
+
+console.log("****************************************");
+
 // 43. Dado un objeto complejo, extrae una propiedad y asígnale un alias (nombre diferente).
 const data43 = { user_name: "César" };
 // Escribe tu código aquí:
+console.log({ data43 });
+const { user_name: nombreUsuario } = data43; // El formato { propiedad: alias } permite renombrar durante la extracción.
+console.log({ data43 });
+
+console.log("****************************************");
 
 /* SOLUCIÓN:
 const { user_name: nombre } = data43;
@@ -530,10 +558,57 @@ Explicación: El formato { propiedad: alias } permite renombrar durante la extra
 */
 
 // 44. Desestructura un array de arrays para obtener el valor interno del segundo elemento.
+const arrayDeArrays = [
+  ["a", "b", "c"],
+  ["1", "2", "3"],
+  ["+", "-", "/"],
+];
+
+const destructuraArrayDeArrays = ([e1, e2]) => {
+  console.log(`Valor interno del segundo elemento del array: ${e2}`);
+};
+
+console.log(arrayDeArrays);
+destructuraArrayDeArrays(arrayDeArrays);
+
+console.log("****************************************");
+
 // 45. Usa desestructuración con valores por defecto en una función de flecha.
+const objValorDefecto = {
+  clima: "frío",
+  status: "activo",
+};
+
+const destructuraObjeto = ({
+  clima = "sin datos",
+  status = "ND",
+  actividad = "poca",
+}) => {
+  console.log(`Clima: ${clima}, Estado: ${status}, Actividad: ${actividad}`);
+};
+
+console.log({ objValorDefecto });
+destructuraObjeto(objValorDefecto);
+
+console.log("****************************************");
+
 // 46. Extrae datos de un objeto JSON anidado que representa una respuesta de API.
 const apiRes = { data: { hits: [{ title: "JS" }] } };
 // Escribe tu código aquí:
+console.log({ apiRes });
+
+const datos = ({
+  data: {
+    hits: [{ title }],
+  },
+}) => {
+  //console.log(data);
+  //console.log(hits);
+  console.log(title);
+};
+datos(apiRes);
+
+console.log("****************************************");
 
 /* SOLUCIÓN:
 const { data: { hits: [ { title } ] } } = apiRes;
@@ -541,14 +616,48 @@ Explicación: Se puede navegar por niveles de objetos y arrays simultáneamente.
 */
 
 // 47. Intercambia los valores de dos variables usando desestructuración de arrays.
+console.log(arrayExterno);
+const swapVars = ([elem1, elem2, elem3]) => {
+  let a = elem2;
+  let b = elem3;
+  console.log(`Varaibles a = ${a} y b = ${b}`);
+};
+
+swapVars(arrayExterno);
+
+console.log("****************************************");
+
 // 48. En una función que recibe un objeto, desestructura solo lo necesario y usa el operador rest para el resto de propiedades.
+console.log(objetoNumero);
+
+const destructuraObj = ({ b, ...rest }) => {
+  console.log(`Propiedad b: ${b}`);
+  console.log(`Resto de propiedades: ${rest}`);
+};
+
+destructuraObj(objetoNumero);
+
+console.log("****************************************");
+
 // 49. Extrae una propiedad de un objeto que podría ser undefined, asignando un valor de respaldo.
+console.log(objetoNumero);
+const destructuraObj2 = ({ numero = "Valor por defecto" }) => {
+  console.log(`Propiedad b: ${numero}`);
+};
+
+destructuraObj2(objetoNumero);
+
+console.log("****************************************");
+
 // 50. Crea una función de flecha que procese un array de objetos, desestructurando cada objeto dentro del parámetro del .map().
 const usuarios = [
   { id: 1, n: "A" },
   { id: 2, n: "B" },
 ];
 // Escribe tu código aquí:
+console.log(
+  usuarios.map(({ id, n: nombre }) => `ID: ${id}, Nombre: ${nombre}`)
+);
 
 /* SOLUCIÓN:
 usuarios.map(({ id, n: nombre }) => `ID: ${id}, Nombre: ${nombre}`);
