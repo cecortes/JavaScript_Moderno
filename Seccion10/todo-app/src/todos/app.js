@@ -4,6 +4,7 @@ import { renderTodos } from "./use_cases";
 
 const ElementsIDs = {
   $TodoList: ".todo-list",
+  $NewTodoInput: "#new-todo-input",
 };
 
 /**
@@ -29,4 +30,28 @@ export const App = (elementId) => {
     //Renderizar después de cargar el html
     displayTodos();
   })();
+
+  //Referencias HTMLElement
+  const newDescriptionInput = document.querySelector(ElementsIDs.$NewTodoInput);
+  const todoListUL = document.querySelector(ElementsIDs.$TodoList);
+
+  //Listeners
+  newDescriptionInput.addEventListener("keyup", (event) => {
+    //Validación no Enter y no Vacío
+    if (event.keyCode !== 13 || event.target.value.trim() === 0) return;
+
+    todoStore.addTodo(event.target.value.trim());
+    displayTodos();
+    event.target.value = "";
+  });
+
+  todoListUL.addEventListener("click", (event) => {
+    const element = event.target.closest("[data-id]");
+    //Toggle Todo
+    todoStore.toggleTodo(element.getAttribute("data-id"));
+    //Borrar Todo
+    if (event.target.classList.contains("destroy"))
+      todoStore.deleteTodo(element.getAttribute("data-id"));
+    displayTodos();
+  });
 };
