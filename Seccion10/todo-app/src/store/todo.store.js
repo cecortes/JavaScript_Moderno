@@ -3,7 +3,7 @@ import { Todo } from "../todos/models/todo.model";
 /**
  * Ocupamos otro objeto para contener las opciones posibles de los filtros que ocupara el objeto 'state' y no dejarlo hardcode.
  */
-const Filters = {
+export const Filters = {
   All: "all",
   Completed: "Completed",
   Pending: "Pending",
@@ -28,9 +28,7 @@ const state = {
  *
  */
 const initStore = () => {
-  console.log(state);
-
-  console.log("InitStore 💩");
+  loadStore();
 };
 
 /**
@@ -59,18 +57,37 @@ const getTodos = (filter = Filters.All) => {
  *
  */
 const loadStore = () => {
-  throw new Error("Not implemented");
+  if (!localStorage.getItem("state")) return;
+
+  const { todos = [], filter = Filters.All } = JSON.parse(
+    localStorage.getItem("state"),
+  );
+  state.todos = todos;
+  state.filter = filter;
+};
+
+/**
+ * saveStateToLocalStorage
+ * @description Guarda el objeto state en el localStorage.
+ * @param {Void} Void
+ * @returns{Void} Nothing
+ */
+const saveStateToLocalStorage = () => {
+  localStorage.setItem("state", JSON.stringify(state));
 };
 
 /**
  * addTodo
  * @description Valida la descripción y agrega una nueva tarea al arreglo de tareas en state.
+ * Llama a la funci[on para guardar en el localStorage.
  * @param {String} description
  */
 const addTodo = (description) => {
   if (!description) throw new Error("Description is requiered");
 
   state.todos.push(new Todo(description));
+
+  saveStateToLocalStorage();
 };
 
 /**
@@ -86,16 +103,20 @@ const toggleTodo = (todoId) => {
     }
     return todo;
   });
+
+  saveStateToLocalStorage();
 };
 
 /**
  * deleteTodo
- * @description Genera un nuevo arreglo con todos las tareas excepto la que se quiere eleiminar, gracias al método filter.
+ * @description Genera un nuevo arreglo con todos las tareas excepto la que se quiere eliminar, gracias al método filter.
  * @param {String} todoId
  */
 const deleteTodo = (todoId) => {
   // Devuelve un array con todos los Todos excepto el que se quiere borrar
   state.todos = state.todos.filter((todo) => todo.id !== todoId);
+
+  saveStateToLocalStorage();
 };
 
 /**
@@ -104,7 +125,9 @@ const deleteTodo = (todoId) => {
  */
 const delCompleted = () => {
   // Devuelve un array con todos los Todos excepto los completados
-  state.todos = state.todos.filter((todo) => todo.done);
+  state.todos = state.todos.filter((todo) => !todo.done);
+
+  saveStateToLocalStorage();
 };
 
 /**
@@ -114,6 +137,8 @@ const delCompleted = () => {
  */
 const setFilter = (newFilter = Filters.All) => {
   state.filtro = newFilter;
+
+  saveStateToLocalStorage();
 };
 
 /**
