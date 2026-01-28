@@ -31,7 +31,7 @@ export const promiseComponent = (element) => {
   // Forma función como referencia
   //findHero(id1).then(renderHero).catch(renderError);
 
-  //! Sin promise hell
+  //! Sin promise hell, Promesas encadenadas cuando retornamos una promesa.
   // findHero(id1)
   //   .then((hero) => {
   //     hero1 = hero;
@@ -42,7 +42,7 @@ export const promiseComponent = (element) => {
   //   })
   //   .catch(renderError);
 
-  // Promise.all
+  // Promise.all espera a que todas las promesas terminen
   Promise.all([findHero(id1), findHero(id2)])
     .then(([hero1, hero2]) => {
       renderTwoHero(hero1, hero2);
