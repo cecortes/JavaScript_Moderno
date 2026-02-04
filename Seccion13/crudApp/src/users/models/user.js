@@ -3,7 +3,7 @@
 export class User {
   /**
    *
-   * @param {Object<likeUser>} likeUser Object
+   * @param {Object<likeUser>} userDataLike Object
    */
   constructor({ id, isActive, balance, avatar, firstName, lastName, gender }) {
     this.id = id;
