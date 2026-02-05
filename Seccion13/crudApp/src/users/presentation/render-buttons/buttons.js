@@ -1,6 +1,7 @@
 "use strict";
 import "./buttons.style.css";
 import usersStore from "../../store/users-store";
+import { renderTable } from "../render-table/table";
 
 /**
  *
@@ -18,4 +19,17 @@ export const renderButtons = (element) => {
   currentPageLabel.innerText = usersStore.getCurrentPage();
 
   element.append(prevButton, currentPageLabel, nextButton);
+
+  // Listener Botones
+  nextButton.addEventListener("click", async () => {
+    await usersStore.loadNextPage();
+    currentPageLabel.innerText = usersStore.getCurrentPage();
+    renderTable(element);
+  });
+
+  prevButton.addEventListener("click", async () => {
+    await usersStore.loadPrevPage();
+    currentPageLabel.innerText = usersStore.getCurrentPage();
+    renderTable(element);
+  });
 };
