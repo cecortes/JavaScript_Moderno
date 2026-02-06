@@ -5,6 +5,7 @@ import { renderButtons } from "./users/presentation/render-buttons/buttons";
 import { renderModal } from "./users/presentation/render-modal/modal";
 import { renderTable } from "./users/presentation/render-table/table";
 import usersStore from "./users/store/users-store";
+import { saveUser } from "./users/users_cases/save_user";
 
 export const UsersApp = async (element) => {
   element.innerHTML = "Loading...";
@@ -15,5 +16,9 @@ export const UsersApp = async (element) => {
   renderTable(element);
   renderButtons(element);
   renderAddButton(element);
-  renderModal(element);
+  renderModal(element, async (userLike) => {
+    const user = await saveUser(userLike);
+    usersStore.onUserChanged(user);
+    renderTable();
+  });
 };

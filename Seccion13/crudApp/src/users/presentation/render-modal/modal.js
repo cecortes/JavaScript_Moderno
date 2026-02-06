@@ -12,14 +12,17 @@ export const showModal = () => {
 
 export const hideModal = () => {
   modal?.classList.add("hide-modal");
-  //TODO Reset del formulario
+
+  //Reset del formulario
+  form?.reset();
 };
 
 /**
  *
  * @param {HTMLDivElement} element
+ * @param {(userLike) => Promise<void>} saveUserCallback
  */
-export const renderModal = (element) => {
+export const renderModal = (element, saveUserCallback) => {
   if (modal) return;
 
   modal = document.createElement("div");
@@ -41,7 +44,33 @@ export const renderModal = (element) => {
   });
 
   //EventListener para prevenir el default del formulario
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    //Uso de la clase FormData implícita en JS.
+    const formData = new FormData(form);
+
+    const userLike = {};
+
+    //Barremos todos los campos del formulario con for off
+    //Y Destructuramos el par key,value
+    for (const [key, value] of formData) {
+      if (key === "balance") {
+        userLike[key] = +value;
+        continue;
+      }
+
+      if (key === "isActive") {
+        userLike[key] = value === "on" ? true : false;
+        continue;
+      }
+
+      userLike[key] = value;
+    }
+    // console.log(userLike);
+    // TODO: Guardar usuarios
+    await saveUserCallback(userLike);
+
+    hideModal();
   });
 };
