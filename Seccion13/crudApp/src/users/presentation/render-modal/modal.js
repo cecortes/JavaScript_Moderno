@@ -1,13 +1,26 @@
 "use strict";
 // IMPORTACION DE HTML EN VITE
 import modalHtml from "./modal.html?raw";
+import { User } from "../../models/user";
 import "./modal.style.css";
+import { getUserById } from "../../users_cases/get_user_by_id";
 
 let modal, form;
+let loadedUser = {};
 
 // TODO: Cargar usuario por id
-export const showModal = () => {
+/**
+ *
+ * @param {String|/Number} id
+ */
+export const showModal = async (id) => {
   modal?.classList.remove("hide-modal");
+  loadedUser = {};
+
+  if (!id) return;
+
+  const user = await getUserById(id);
+  setFormValues(user);
 };
 
 export const hideModal = () => {
@@ -15,6 +28,18 @@ export const hideModal = () => {
 
   //Reset del formulario
   form?.reset();
+};
+
+/**
+ *
+ * @param {User} user
+ */
+const setFormValues = (user) => {
+  form.querySelector(`[name="firstName"]`).value = user.firstName;
+  form.querySelector(`[name="lastName"]`).value = user.lastName;
+  form.querySelector(`[name="balance"]`).value = user.balance;
+  form.querySelector(`[name="isActive"]`).checked = user.isActive;
+  loadedUser = user;
 };
 
 /**
@@ -50,7 +75,7 @@ export const renderModal = (element, saveUserCallback) => {
     //Uso de la clase FormData implícita en JS.
     const formData = new FormData(form);
 
-    const userLike = {};
+    const userLike = { ...loadedUser };
 
     //Barremos todos los campos del formulario con for off
     //Y Destructuramos el par key,value

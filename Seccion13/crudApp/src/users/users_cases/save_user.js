@@ -1,5 +1,6 @@
 "use strict";
 
+import { localHostUserToModel } from "../mappers/localhost.user.mapper";
 import { userModelToLocalHost } from "../mappers/user.localhost.mapper";
 import { User } from "../models/user";
 
@@ -16,15 +17,16 @@ export const saveUser = async (userLike) => {
 
   //Mapper para preparar el objeto como lo espera el backend
   const userToSave = userModelToLocalHost(user);
+  let userUpdated;
 
   //Validamos id del usuario para Update o Create
   if (user.id) {
-    throw "Not implemented yet";
-    return;
+    userUpdated = await updateUser(userToSave);
+  } else {
+    userUpdated = await createUser(userToSave);
   }
 
-  const updatedUser = await createUser(userToSave);
-  return updatedUser;
+  return localHostUserToModel(userUpdated);
 };
 
 /**
@@ -44,4 +46,23 @@ const createUser = async (user) => {
   const newUser = await res.json();
   console.log({ newUser });
   return newUser;
+};
+
+/**
+ *
+ * @param {Like<User>} user
+ */
+const updateUser = async (user) => {
+  const url = `/api-local/users/${user.id}`;
+  const res = await fetch(url, {
+    method: "PATCH",
+    body: JSON.stringify(user),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const updatedUser = await res.json();
+  console.log({ updatedUser });
+  return updatedUser;
 };
